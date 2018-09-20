@@ -1,4 +1,7 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux';
+
+import { registerUser } from '../../actions';
 
  class Register extends Component {
 
@@ -7,23 +10,12 @@ import React, { Component } from 'react'
         email: '',
         password: '',
         confirmPassword: '',
-        errors: {},
-        error: ''
+        errors: {}
     }
 
   handleInput = (event) => {
     this.setState({
         [event.target.name]: event.target.value
-    }, () => {
-        if (this.state.password !== this.state.confirmPassword) {
-            this.setState({
-                error: 'Password not match'
-            })
-        } else {
-            this.setState({
-                error: ''
-            })
-        }
     });
 
 
@@ -40,6 +32,8 @@ import React, { Component } from 'react'
             password: this.state.password
         }
 
+        this.props.registerUser(newUser)
+
     event.target.reset();
   }
 
@@ -55,8 +49,6 @@ import React, { Component } from 'react'
             <br />
             <input name='confirmPassword'  onKeyUp={this.handleInput}/>
             <br />
-            {this.state.error}
-            <br />
             <button>Submit</button>
         </form>
       </div>
@@ -64,4 +56,8 @@ import React, { Component } from 'react'
   }
 }
 
-export default Register;
+const mapStateToProps = (state) => ({
+    user: state.user
+});
+
+export default connect(mapStateToProps, { registerUser })(Register);
