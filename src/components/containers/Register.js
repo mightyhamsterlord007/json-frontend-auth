@@ -29,7 +29,8 @@ import { registerUser } from '../../actions';
         const newUser = {
             username: this.state.username,
             email: this.state.email, 
-            password: this.state.password
+            password: this.state.password,
+            confirmPassword: this.state.confirmPassword
         }
 
         this.props.registerUser(newUser)
@@ -38,6 +39,10 @@ import { registerUser } from '../../actions';
   }
 
   render() {
+
+    console.log(this.props)
+    console.log(this.props.user)
+
     return (
       <div>
         <form onSubmit={this.handleSubmit}>

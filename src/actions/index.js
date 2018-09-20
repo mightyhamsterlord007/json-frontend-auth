@@ -15,7 +15,12 @@ export const registerUser = (userData) => dispatch => {
 
     Axios
         .post('/users/signup', userData)
-        .then(user => console.log(user))
+        .then(user => {
+            dispatch({
+                type: SIGN_USER_UP,
+                data: user
+            })
+        })
         .catch(err => {
             console.log(err)
         });
