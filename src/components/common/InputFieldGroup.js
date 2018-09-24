@@ -12,7 +12,6 @@ const InputFieldGroup = ({
     onChange,
     disabled
 }) => {
-    console.log(name)
     return (
         <div className="form-group">
             <input 

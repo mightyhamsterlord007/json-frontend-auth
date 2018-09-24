@@ -17,8 +17,6 @@ import { InputFieldGroup } from '../common';
   handleInput = (event) => {
     this.setState({
         [event.target.name]: event.target.value
-    }, () => {
-      console.log(this.state)
     });
     
   }
@@ -62,6 +60,22 @@ import { InputFieldGroup } from '../common';
               value={this.state.email}
               onChange={this.handleInput}
               error={errors.email}
+            />
+            <InputFieldGroup 
+              type='password'
+              placeholder='password'
+              name="password"
+              value={this.state.password}
+              onChange={this.handleInput}
+              error={errors.password}
+            />
+            <InputFieldGroup 
+              type='password'
+              placeholder='confirm password'
+              name="confirmPassword"
+              value={this.state.confirmPassword}
+              onChange={this.handleInput}
+              error={errors.confirmPassword}
             />
             <br />
             <button>Submit</button>

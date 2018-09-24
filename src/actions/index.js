@@ -1,4 +1,4 @@
-import { SIGN_USER_UP } from '../constants';
+import { SIGN_USER_UP, GET_ERRORS } from '../constants';
 
 import axios from 'axios';
 
@@ -21,8 +21,11 @@ export const registerUser = (userData) => dispatch => {
                 data: user
             })
         })
-        .catch(err => {
-            console.log(err)
+        .catch(err => {            
+            dispatch({
+                type: GET_ERRORS,
+                data: err
+            })
         });
 
 }
