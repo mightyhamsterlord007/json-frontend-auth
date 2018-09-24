@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 
 import { registerUser } from '../../actions';
+import { InputFieldGroup } from '../common';
 
  class Register extends Component {
 
@@ -16,9 +17,10 @@ import { registerUser } from '../../actions';
   handleInput = (event) => {
     this.setState({
         [event.target.name]: event.target.value
+    }, () => {
+      console.log(this.state)
     });
-
-
+    
   }
 
   handleSubmit = (event) => {
@@ -40,19 +42,27 @@ import { registerUser } from '../../actions';
 
   render() {
 
-    console.log(this.props)
-    console.log(this.props.user)
+    const { errors } = this.state;
 
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
-            <input name='username' onKeyUp={this.handleInput} />
-            <br />
-            <input name='email'  onKeyUp={this.handleInput} />
-            <br />
-            <input name='password'  onKeyUp={this.handleInput}/>
-            <br />
-            <input name='confirmPassword'  onKeyUp={this.handleInput}/>
+            <InputFieldGroup 
+              type='text'
+              placeholder='username'
+              name="username"
+              value={this.state.username}
+              onChange={this.handleInput}
+              error={errors.username}
+            />
+            <InputFieldGroup 
+              type='email'
+              placeholder='email'
+              name="email"
+              value={this.state.email}
+              onChange={this.handleInput}
+              error={errors.email}
+            />
             <br />
             <button>Submit</button>
         </form>
